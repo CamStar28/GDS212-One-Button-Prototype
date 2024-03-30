@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro; 
 
 public class playerController : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class playerController : MonoBehaviour
     //public List<string> playerDirection = new List<string>(){"playerUp", "playerUpLeft", "playerLeft", "playerDownLeft", "playerDown", "playerDownRight", "playerRight", "playerUpRight"}; 
 
     public string playerDirection;
+
+    public TextMeshProUGUI directionText; 
 
     // Start is called before the first frame update
     void Start()
@@ -68,37 +71,54 @@ public class playerController : MonoBehaviour
             if (playerDirection == "playerUp")
             {
                 playerDirection = "playerUpRight";
+
+                directionText.text = "Current direction: Up Right";
             }
             else if (playerDirection == "playerUpRight")
             {
                 playerDirection = "playerRight";
+
+                directionText.text = "Current direction: Right";
             }
             else if (playerDirection == "playerRight")
             {
                 playerDirection = "playerDownRight";
+
+                directionText.text = "Current direction: Down Right";
             }
             else if (playerDirection == "playerDownRight")
             {
                 playerDirection = "playerDown";
+
+                directionText.text = "Current direction: Down";
             }
             else if (playerDirection == "playerDown")
             {
                 playerDirection = "playerDownLeft";
+
+                directionText.text = "Current direction: Down Left";
             }
             else if (playerDirection == "playerDownLeft")
             {
                 playerDirection = "playerLeft";
+
+                directionText.text = "Current direction: Left";
             }
             else if (playerDirection == "playerLeft")
             {
                 playerDirection = "playerUpLeft";
+
+                directionText.text = "Current direction: Up Left";
             }
             else if (playerDirection == "playerUpLeft")
             {
                 playerDirection = "playerUp";
+
+                directionText.text = "Current direction: Up";
             }
 
             Debug.Log("Current direction " + playerDirection);
         }
+
     }
 }
