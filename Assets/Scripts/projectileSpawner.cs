@@ -9,40 +9,40 @@ public class projectileSpawner : MonoBehaviour
     private List<int> SpawnTimeList = new List<int>() { 59, 57, 55, 54, 52, 50, 48, 48, 47, 46, 45, 43, 42, 42, 40, 37, 37, 36, 36, 35, 35, 34, 33, 32, 30, 28, 27, 25, 24, 24, 22, 20, 20, 19, 19, 18, 17, 17, 16, 14, 14, 12, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 2, 2 };
     public int currentSpawnTimeIndex = 0;
     public GameObject projectilePrefab;
-
     public float TimeRemaining;
+    //all of these values are used for the spawning of projectiles, with the list telling the system when to spawn them relative to a counting down timer 
 
     // Start is called before the first frame update
     void Start()
     {
-        TimeRemaining = 60; 
+        TimeRemaining = 60; //normalises the timer when the scene loads or is reloaded 
     }
 
     // Update is called once per frame
     void Update()
     {
-        TimeRemaining -= Time.deltaTime;
+        TimeRemaining -= Time.deltaTime; //counts down the timer 
 
 
-        if ((int)TimeRemaining == SpawnTimeList[currentSpawnTimeIndex] && CanSpawn == true)
+        if ((int)TimeRemaining == SpawnTimeList[currentSpawnTimeIndex] && CanSpawn == true) //this if statement rounds the value of time remaining matches the next value in the spawn list
         {
             SpawnProjectile();
-            CanSpawn = false;
-            currentSpawnTimeIndex++;
+            CanSpawn = false; //turning off this value prevents a projectile spawning every frame 
+            currentSpawnTimeIndex++; //progresses to the next value in the list 
         }
 
-        if (currentSpawnTimeIndex >= SpawnTimeList.Count)
+        if (currentSpawnTimeIndex >= SpawnTimeList.Count) //failsafe for reaching the end of the list 
         {
             currentSpawnTimeIndex = 0;
         }
 
-        if ((int)TimeRemaining == SpawnTimeList[currentSpawnTimeIndex] && CanSpawn == false)
+        if ((int)TimeRemaining == SpawnTimeList[currentSpawnTimeIndex] && CanSpawn == false) //allows projectiles to be spawned again, works in a way to prevent projectiles spawning every frame 
         {
             CanSpawn = true;
         }
     }
 
-    void SpawnProjectile()
+    void SpawnProjectile() //generates a random value, then spawns the prefab projectile into a random trigger (which decides their movement) based on said value 
     {
         SpawnPosition = Random.Range(1, 9);
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class spawnerController : MonoBehaviour
 {
 
-    public int spawnerValue; 
+    public int spawnerValue; //this public field allows the same script to be used on all the triggers, with it's value being changed on the objects themselves 
     
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,6 @@ public class spawnerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Sending Magic Right");
-        other.gameObject.GetComponent<projectileBehaviour>().projPosition = spawnerValue;
+        other.gameObject.GetComponent<projectileBehaviour>().projPosition = spawnerValue; //uses the spawnerValue assigned to each object to change the direction the projectiles move (see projetileBehaviour script)
     }
 }

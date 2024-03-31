@@ -18,12 +18,13 @@ public class playerController : MonoBehaviour
     {
         playerDirection = "playerUp";
         directionText.text = "Current direction: Up";
+        //normalises the player's starting direction (and the display) upon level re-load 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("space"))
+        if (Input.GetKey("space")) //this if statement handles the player's movement, with the direction changing depending on the playerDirection value 
         {
             //Debug.Log("hit da space");
             
@@ -66,9 +67,10 @@ public class playerController : MonoBehaviour
             {
                 transform.position += new Vector3(-5, 0, 5) * Time.deltaTime;
             }
+            //there's 100% a more efficient way to do this but it works so oh well lol
         }
 
-        if (Input.GetKeyUp("space")) 
+        if (Input.GetKeyUp("space")) //this if statement switches the playerDirection value when the space bar is released, changing the way the player moves in the above statement 
         {
             if (playerDirection == "playerUp")
             {
@@ -131,4 +133,6 @@ public class playerController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
+    //simply re-loads the scene when the player gets hit
+    //in the full game a health system would likely be implemented 
 }

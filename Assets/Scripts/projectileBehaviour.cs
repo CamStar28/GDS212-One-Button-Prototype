@@ -57,6 +57,6 @@ public class projectileBehaviour : MonoBehaviour
             transform.position += new Vector3(5, 0, -5) * Time.deltaTime;
         }
     }
-
+    //everything in Update handles the direction the projectile moves. Their position value is changed by triggers they are placed into when they spawn
     
 }
