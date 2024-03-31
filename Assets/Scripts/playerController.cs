@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; 
 using TMPro; 
 
 public class playerController : MonoBehaviour
@@ -15,7 +16,8 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerDirection = "playerUp"; 
+        playerDirection = "playerUp";
+        directionText.text = "Current direction: Up";
     }
 
     // Update is called once per frame
@@ -117,8 +119,16 @@ public class playerController : MonoBehaviour
                 directionText.text = "Current direction: Up";
             }
 
-            Debug.Log("Current direction " + playerDirection);
+            //Debug.Log("Current direction " + playerDirection);
         }
 
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Projectile")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
